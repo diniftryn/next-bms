@@ -1,5 +1,11 @@
+import Logout from "../logout";
+
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  return (
+    <div>
+      <Logout />
+    </div>
+  );
 };
 
 export default Dashboard;
