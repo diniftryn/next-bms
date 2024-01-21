@@ -99,7 +99,7 @@ const LoginForm = () => {
               </div>
             </CardContent>
             <CardFooter className="flex justify-between">
-              <Button variant="outline">Forgot Password</Button>
+              {/* <Button variant="outline">Forgot Password</Button> */}
               {isLoading ? (
                 <Button disabled>
                   <ReloadIcon className="animate-spin" />
