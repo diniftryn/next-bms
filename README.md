@@ -1,4 +1,4 @@
-This app was developed with Next.js, TypScript, Tailwind CSS, shadcnUI and MongoDB.
+This app was developed with Next.js, TypeScript, Tailwind CSS, shadcnUI and MongoDB.
 
 ## Booking Management System
 
