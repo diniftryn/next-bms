@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import Link from "next/link";
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -106,7 +107,11 @@ const LoginForm = () => {
                   <ReloadIcon className="animate-spin" />
                 </Button>
               ) : (
-                <Button type="submit">Login</Button>
+                <div>
+                  <Button type="submit">Login</Button><br/>
+                  <Link href='/register' className='text-sm underline'>No account? Create an account intead</Link>
+                </div>
+
               )}
             </CardFooter>
           </form>
