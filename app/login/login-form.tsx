@@ -47,7 +47,7 @@ const LoginForm = () => {
     });
 
     console.log({ response });
-    console.log('test')
+    console.log("test");
     if (!response?.error) {
       toast("Login successful");
       router.push("/");
@@ -62,7 +62,7 @@ const LoginForm = () => {
   }
 
   return (
-    <div className="grid place-items-center">
+    <div className="h-screen flex items-center justify-center">
       <Card className="w-[350px]">
         <CardHeader>
           <CardTitle>Login</CardTitle>
@@ -108,10 +108,12 @@ const LoginForm = () => {
                 </Button>
               ) : (
                 <div>
-                  <Button type="submit">Login</Button><br/>
-                  <Link href='/register' className='text-sm underline'>No account? Create an account intead</Link>
+                  <Button type="submit">Login</Button>
+                  <br />
+                  <Link href="/register" className="text-sm underline">
+                    No account? Create an account intead
+                  </Link>
                 </div>
-
               )}
             </CardFooter>
           </form>
