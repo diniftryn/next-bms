@@ -23,7 +23,10 @@ const handler = NextAuth({
         const user = await User.findOne({ email: credentials?.email });
 
         if (user) {
-          const passwordCorrect = (await compare(credentials?.password || "", user.password)) || credentials?.password === user.password;
+          const passwordCorrect = await compare(
+            credentials?.password || '',
+            user.password
+          );
           console.log({ passwordCorrect });
 
           if (passwordCorrect) {

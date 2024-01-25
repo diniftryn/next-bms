@@ -23,7 +23,8 @@ const formSchema = z.object({
 });
 
 const SignUpForm = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | undefined>(undefined)
   const backendPort = process.env.NEXT_PUBLIC_BACKEND_PORT;
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -35,29 +36,34 @@ const SignUpForm = () => {
   });
 
   async function createUser(email: string, password: string) {
-    const response = await fetch("", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(data.message || "Something went wrong");
+    try {
+        const response = await fetch('/api/auth/register', {
+          method: "POST",
+          body: JSON.stringify({ email, password }),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+        console.log("response", response)
+        if (!response.ok) {
+            console.log("User registration failed")
+        }
+        return response;
+    } catch(e) {
+        console.log("error during registration", error)
     }
-    return data;
+
   }
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
-    const response = await createUser(values.email, values.password);
-    const logInResult = await signIn("credentials", {
-      email: values.email,
-      password: values.password,
-      redirect: false
-    });
+
+    if (!values.email || !values.password) {
+        setError("All fields are necessary")
+        return
+    }
+    const response = await createUser(values.email, values.password)
+    console.log({ response });
   }
 
   return (
